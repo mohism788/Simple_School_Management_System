@@ -22,5 +22,14 @@ namespace School_Management_System.Repositories
                 .ToListAsync();
 
         }
+
+        public async Task<List<Supply>> SuppliesForStudent(int id)
+        {
+            return await _dbContext.Students
+                 .Where(x=>x.StudentId == id)
+                 .SelectMany(s=>s.Supplies)
+                 .ToListAsync();
+
+        }
     }
 }

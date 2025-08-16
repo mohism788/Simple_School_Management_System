@@ -47,6 +47,17 @@ namespace School_Management_System.Controllers
             return Ok(courses);
         }
 
+        [HttpGet("SuppliesForStudent-{id}")]
+        public async Task<IActionResult> GetSuppliesForStudent(int id)
+        {
+            var supplies = await _studentsRepo.SuppliesForStudent(id);
+            if (supplies == null || !supplies.Any())
+            {
+                return NotFound($"No supplies found for student with id:{id}");
+            }
+            return Ok(supplies);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateStudent([FromBody] CreateNewStudentDto newStudentDto)
         {

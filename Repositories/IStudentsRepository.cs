@@ -7,5 +7,6 @@ namespace School_Management_System.Repositories
     {
 
         Task<List<Course>> CoursesForStudent(int id);
+        Task<List<Supply>> SuppliesForStudent(int id);
     }
 }
