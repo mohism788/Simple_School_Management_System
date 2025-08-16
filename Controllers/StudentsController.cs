@@ -17,13 +17,13 @@ namespace School_Management_System.Controllers
         {
             _studentsRepo = studentsRepo;
         }
-
+        //GET: api/Students
         [HttpGet]
         public async Task<IActionResult> GetAllStudents()
         {
             return Ok(await _studentsRepo.GetAllAsync());
         }
-
+        //GET: api/Students/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetStudentById(int id)
         {
@@ -35,7 +35,7 @@ namespace School_Management_System.Controllers
             return Ok(student);
         }
 
-
+        // GET: api/Students/CoursesForStudent-{id}
         [HttpGet("CoursesForStudent-{id}")]
         public async Task<IActionResult> GetCoursesForStudent(int id)
         {
@@ -46,7 +46,7 @@ namespace School_Management_System.Controllers
             }
             return Ok(courses);
         }
-
+        // GET: api/Students/SuppliesForStudent-{id}
         [HttpGet("SuppliesForStudent-{id}")]
         public async Task<IActionResult> GetSuppliesForStudent(int id)
         {
@@ -57,7 +57,7 @@ namespace School_Management_System.Controllers
             }
             return Ok(supplies);
         }
-
+        // POST: api/Students
         [HttpPost]
         public async Task<IActionResult> CreateStudent([FromBody] CreateNewStudentDto newStudentDto)
         {
@@ -74,14 +74,14 @@ namespace School_Management_System.Controllers
             await _studentsRepo.AddAsync(student);
             return NoContent();
         }
-
+        // DELETE: api/Students/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStudent(int id)
         {
             _studentsRepo.DeleteAsync(id);
             return NoContent();
         }
-
+        // PUT: api/Students/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateStudent(int id, [FromBody] UpdateStudentDto updatedStudentDto)
         {

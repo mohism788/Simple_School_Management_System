@@ -17,7 +17,7 @@ namespace School_Management_System.Models
         [Range(5, 18, ErrorMessage = "Student's Age must be between 5yo and 18yo")]
         public int Age { get; set; }
 
-        [GradeFormat]
+        [GradeFormat] // Custom validation attribute for grade format
         public string GradeLevel { get; set; }
         // Navigation property for courses
         public ICollection<Course> Courses { get; set; } = new List<Course>();

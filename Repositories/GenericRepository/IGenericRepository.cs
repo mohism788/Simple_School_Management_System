@@ -9,14 +9,14 @@ namespace School_Management_System.Repositories.GenericRepository
 
         Task AddAsync(T entity);
 
-        void UpdateAsync(T entity);
+        Task UpdateAsync(T entity);
 
-        void DeleteAsync(int id);
+        Task DeleteAsync(int id);
 
         //find 
         Task<bool> FindEntityAsync(Expression<Func<T, bool>> predicate);
-        void UpdateRangeAsync(IEnumerable<T> entities);
-       // void DeleteRange(IEnumerable<int> ids);
+        Task UpdateRangeAsync(IEnumerable<T> entities);
+       
 
     }
 }

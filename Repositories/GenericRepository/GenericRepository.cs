@@ -21,12 +21,12 @@ namespace School_Management_System.Repositories.GenericRepository
             await _dbContext.SaveChangesAsync();
         }
 
-        public void DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             var entity = _dbSet.Find(id);
              _dbSet.Remove(entity);
 
-             _dbContext.SaveChanges();
+             await _dbContext.SaveChangesAsync();
         }
 
         public async Task<bool> FindEntityAsync(Expression<Func<T,bool>> predicate)
@@ -44,24 +44,24 @@ namespace School_Management_System.Repositories.GenericRepository
             return await _dbSet.FindAsync(id);
         }
 
-         public void RemoveRange(IEnumerable<int> ids)
+         public async Task RemoveRange(IEnumerable<int> ids)
         {
             _dbSet.RemoveRange(_dbSet.Where(e => ids.Contains((int)e.GetType().GetProperty("Id").GetValue(e, null))));
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
         }
 
-        public void UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
             _dbSet.Update(entity);
-            _dbContext.SaveChanges();
+           await _dbContext.SaveChangesAsync();
         }
 
-        public void UpdateRangeAsync(IEnumerable<T> entities)
+        public async Task UpdateRangeAsync(IEnumerable<T> entities)
         {
             _dbSet.UpdateRange(entities);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

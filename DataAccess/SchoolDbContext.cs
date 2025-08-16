@@ -5,6 +5,8 @@ namespace School_Management_System.DataAccess
 {
     public class SchoolDbContext : DbContext
     {
+
+        //Passing the DbContextOptions to the base class
         public SchoolDbContext(DbContextOptions<SchoolDbContext> options) : base(options)
         {
         }
@@ -17,7 +19,7 @@ namespace School_Management_System.DataAccess
                     "StudentCourse",  // Join table name
                     j => j.HasOne<Course>().WithMany().HasForeignKey("CourseId"),
                     j => j.HasOne<Student>().WithMany().HasForeignKey("StudentId"),
-                    j => j.ToTable("StudentCourses")  // Optional: custom table name
+                    j => j.ToTable("StudentCourses")  //Now we can return Courses for a student and vice versa
                 );
 
 
@@ -28,6 +30,8 @@ namespace School_Management_System.DataAccess
                .OnDelete(DeleteBehavior.Cascade); // Optional: Delete supplies if student is deleted
         }
 
+
+        //Create DbSets for each model
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Supply> Supplies { get; set; }

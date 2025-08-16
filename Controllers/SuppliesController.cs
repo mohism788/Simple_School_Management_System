@@ -16,13 +16,16 @@ namespace School_Management_System.Controllers
         {
             _suppliesRepo = suppliesRepo;
         }
+
+        // GET: api/Supplies
         [HttpGet]
         public async Task<IActionResult> GetSupplies()
         {
            
             return Ok(await _suppliesRepo.GetAllAsync());
         }
-        
+
+        //POST: api/Supplies
         [HttpPost]
         public async Task<IActionResult> AddSupply([FromBody] CreateNewSupplyDto newSupply)
         {
@@ -40,7 +43,8 @@ namespace School_Management_System.Controllers
             await _suppliesRepo.AddAsync(supply);
             return Ok("Supply Added");
         }
-       
+
+        //DELETE: api/Supplies/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSupply([FromRoute]int id)
         {
@@ -55,6 +59,8 @@ namespace School_Management_System.Controllers
             return Ok("Supply Deleted!");
         }
 
+
+        //PUT: api/Supplies/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateSupply([FromRoute] int id, [FromBody] UpdateSupplyDto updateSupply)
         {

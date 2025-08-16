@@ -17,13 +17,13 @@ namespace School_Management_System.Controllers
             _couresRepo = couresRepo;
         }
 
-
+        //GET: api/Courses
         [HttpGet]
         public async Task<IActionResult> GetAllCourses()
         {
             return Ok(await _couresRepo.GetAllAsync());
         }
-
+        //GET api/Courses/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCourseById([FromRoute]int id)
         {
@@ -34,7 +34,7 @@ namespace School_Management_System.Controllers
             }
             return Ok(course);
         }
-
+        // GET api/Courses/StudentsInCourse{id}
         [HttpGet("/StudentsInCourse{id}")]
         public async Task<IActionResult> GetStudentsInCourse([FromRoute] int id)
         {
@@ -45,14 +45,14 @@ namespace School_Management_System.Controllers
             }
             return Ok(students);
         }
-
+        //DELETE: api/Course/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCoures([FromRoute]int id)
         {
             _couresRepo.DeleteAsync(id);
             return Ok($"Course of id:{id} has been deleted successfully!");
         }
-
+        //POST: api/Courses
         [HttpPost]
         public async Task<IActionResult> CreateCourse([FromBody] CreateNewCourseDto createNewCourse)
         {
@@ -67,7 +67,7 @@ namespace School_Management_System.Controllers
 
             return Ok("Course Created!");
         }
-
+        //PUT: api/Courses/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCourse([FromBody] UpdateCourseDto updateCourseDto, [FromRoute] int id)
         {
